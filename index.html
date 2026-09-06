@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>coreskills — rebuilding</title>
+<meta name="description" content="coreskills.in is being rebuilt as a UI/UX design portfolio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #ECE9E1;
+    --ink: #23231F;
+    --muted: #8C8879;
+    --line: #D3CFC2;
+    --accent: #3454D1;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 100vh;
+    padding: 6vw;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  .mark {
+    position: absolute;
+    top: 6vw;
+    right: 6vw;
+    width: clamp(64px, 10vw, 120px);
+    height: clamp(64px, 10vw, 120px);
+  }
+
+  .mark circle {
+    stroke-dasharray: 340;
+    stroke-dashoffset: 340;
+    animation: draw 1.1s ease-out forwards;
+  }
+  .mark circle:nth-of-type(1) { animation-delay: 0.1s; }
+  .mark circle:nth-of-type(2) { animation-delay: 0.35s; stroke-dasharray: 214; stroke-dashoffset: 214; }
+  .mark circle:nth-of-type(3) { animation-delay: 0.6s; stroke-dasharray: 101; stroke-dashoffset: 101; }
+  .mark circle:nth-of-type(4) {
+    opacity: 0;
+    animation: dot-in 0.4s ease-out forwards;
+    animation-delay: 0.95s;
+  }
+
+  @keyframes draw {
+    to { stroke-dashoffset: 0; }
+  }
+  @keyframes dot-in {
+    to { opacity: 1; }
+  }
+
+  .content {
+    max-width: 640px;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .wordmark {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 500;
+    font-size: clamp(2.8rem, 9vw, 6.5rem);
+    line-height: 0.95;
+    margin: 0 0 1.5rem 0;
+    letter-spacing: -0.02em;
+    animation-delay: 0.15s;
+  }
+
+  .byline {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin: -1rem 0 1.75rem 0;
+    animation-delay: 0.35s;
+  }
+
+  .lede {
+    font-size: clamp(1rem, 1.6vw, 1.15rem);
+    line-height: 1.6;
+    color: var(--ink);
+    max-width: 34ch;
+    margin: 0 0 2rem 0;
+    animation-delay: 0.5s;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 0 0 1.5rem 0;
+    width: 100%;
+    max-width: 320px;
+    animation-delay: 0.65s;
+  }
+
+  .status {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin: 0;
+    animation-delay: 0.8s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mark circle, .reveal {
+      animation: none;
+      opacity: 1;
+      stroke-dashoffset: 0;
+      transform: none;
+    }
+  }
+
+  .status .accent {
+    color: var(--accent);
+  }
+
+  .cursor {
+    display: inline-block;
+    color: var(--accent);
+    animation: blink 1.1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cursor { animation: none; opacity: 1; }
+  }
+
+  footer {
+    margin-top: 3rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  @media (max-width: 560px) {
+    body { padding: 8vw 7vw; }
+    .mark { top: 7vw; right: 7vw; }
+  }
+</style>
+</head>
+<body>
+
+  <svg class="mark" viewBox="0 0 120 120" aria-hidden="true">
+    <circle cx="60" cy="60" r="52" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+    <circle cx="60" cy="60" r="34" fill="none" stroke="var(--muted)" stroke-width="1.5" opacity="0.6"/>
+    <circle cx="60" cy="60" r="16" fill="none" stroke="var(--ink)" stroke-width="1.5" opacity="0.5"/>
+    <circle cx="60" cy="60" r="4" fill="var(--accent)"/>
+  </svg>
+
+  <main class="content">
+    <h1 class="wordmark reveal">coreskills</h1>
+    <p class="byline reveal">Sandeep Haldar — Product Design Manager</p>
+    <p class="lede reveal">A portfolio of product design work. Case studies and more, on the way.</p>
+    <hr class="divider reveal">
+    <p class="status reveal">Back <span class="accent">soon</span><span class="cursor">_</span></p>
+  </main>
+
+  <footer>coreskills.in</footer>
+
+</body>
+</html>
